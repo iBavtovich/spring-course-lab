@@ -1,0 +1,79 @@
+group = 'com.epam.jl.mart.spring'
+version = '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 10
+
+configurations {
+    testCompile.extendsFrom compileOnly
+}
+
+// turn sout`ing on in tests:
+test.testLogging.showStandardStreams = true
+
+repositories {
+
+    flatDir { dirs './lib' } // for local libs
+
+    mavenLocal()
+    mavenCentral()
+    jcenter() // BinTray
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+test {
+    useJUnitPlatform {
+        // includeTags 'fast'
+        excludeTags 'slow'
+        // includeEngines 'junit-jupiter', 'junit-vintage'
+        // excludeEngines 'custom-engine'
+    }
+}
+
+dependencies {
+    compile 'org.springframework:spring-context:+',
+            'org.springframework:spring-aspects:+',
+
+            // todo: insert additional dependencies here
+
+            // Commons
+            'org.apache.logging.log4j:log4j-slf4j-impl:+'
+
+    compileOnly ':lombok-edge:',
+            'edu.washington.cs.types.checker:checker-framework:+'
+
+    // H2
+    testRuntime 'com.h2database:h2:+'
+    // compile 'com.zaxxer:HikariCP:+',
+    // spring.datasource.url=jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+    // spring.datasource.driver-class-name=org.h2.Driver
+    // #spring.datasource.username=
+    // #spring.datasource.password=
+    // spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+    // spring.jpa.hibernate.ddl-auto=create
+    // spring.jpa.properties.hibernate.show_sql=true
+
+
+    testCompile 'org.junit.jupiter:junit-jupiter-params:+',
+            'org.hamcrest:java-hamcrest:+',
+            'org.mockito:mockito-core:+',
+            'org.springframework:spring-test:+'
+
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:+'
+
+    // To avoid compiler warnings about @API annotations in JUnit code
+    testCompileOnly 'org.apiguardian:apiguardian-api:+'
+}
+
+// type in terminal: gradle wrapper --gradle-version=4.7-rc-1
+task wrapper(type: Wrapper) {
+    description = 'Generates gradlew[.bat] scripts'
+    gradleVersion = '4.7-rc-1'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}

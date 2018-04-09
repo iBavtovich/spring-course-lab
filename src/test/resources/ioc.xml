@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="person" class="lab.model.simple.SimplePerson"
+          c:firstName="John"
+          c:lastName="Smith"
+          c:age="35"
+          c:isProgrammer="true"
+          c:height="1.78"
+          c:broke="false"
+          c:country-ref="country"
+          c:contacts-ref="contacts"/>
+
+    <bean id="country" class="lab.model.simple.SimpleCountry"
+          c:name="Russia" c:codeName="RU"/>
+
+    <util:list id="contacts" value-type="lab.model.Contact">
+        <bean class="lab.model.simple.SimpleContact" c:type="EMAIL" c:value="asd@asd.ru"/>
+        <bean class="lab.model.simple.SimpleContact" c:type="TELEPHONE" c:value="+55 11 99999-5555"/>
+    </util:list>
+
+</beans>
