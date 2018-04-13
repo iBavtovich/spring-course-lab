@@ -25,16 +25,15 @@ public class JdbcTest{
 	@Autowired
 	private CountryDao countryDao;
 	
-    private ArrayList<Country> expectedCountryList = new ArrayList<>();
+    private List<Country> expectedCountryList = new ArrayList<>();
     private List<Country> expectedCountryListStartsWithA = new ArrayList<>();
 
     @BeforeEach
     public void setUp() {
         initExpectedCountryLists();
-        countryDao.loadCountries();
     }
 
-    
+
     @Test
     @DirtiesContext
     public void testCountryList() {
