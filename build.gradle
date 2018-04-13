@@ -39,8 +39,10 @@ test {
 dependencies {
     compile 'org.springframework:spring-context:+',
             'org.springframework:spring-aspects:+',
+            'org.springframework:spring-jdbc:+',
 
-            // todo: insert additional dependencies here
+
+    // todo: insert additional dependencies here
 
             // Commons
             'org.apache.logging.log4j:log4j-slf4j-impl:+'
