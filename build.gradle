@@ -40,7 +40,10 @@ dependencies {
     compile 'org.springframework:spring-context:+',
             'org.springframework:spring-aspects:+',
             'org.springframework:spring-jdbc:+',
-
+            'org.springframework:spring-orm:+',
+            'org.hibernate:hibernate-core:+',
+            'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:+',
+            'javax.xml.bind:jaxb-api:+',
 
     // todo: insert additional dependencies here
 
